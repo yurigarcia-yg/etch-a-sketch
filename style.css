@@ -1,0 +1,17 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+.container {
+  display: flex;
+  height: 1000px;
+  width: 1000px;
+}
+
+.row {
+  height: 50px;
+  width: 50px;
+  background-color: black;
+  border: solid red 2px;
+}
