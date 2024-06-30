@@ -1,29 +1,66 @@
-//import functions
-
-//create page with 16x16 grid of square divs.
-
 const container = document.querySelector(".container");
+const restart = document.querySelector(".restart");
+const grid = document.querySelector(".grid-size");
+const defaultColor = document.querySelector(".default");
+const rainbow = document.querySelector(".rainbow");
+let gridSize = 16;
 
-for (i = 0; i < 16; i++) {
-  let column = document.createElement("div");
-  column.classList.add("column");
-  container.appendChild(column);
-
-  for (let j = 0; j < 16; j++) {
-    let row = document.createElement("div");
-    row.classList.add("row");
-    column.appendChild(row);
+function createGrid(size) {
+  container.innerHTML = ""; // Clear existing grid
+  for (let i = 0; i < size; i++) {
+    let column = document.createElement("div");
+    column.classList.add("column");
+    container.appendChild(column);
+    for (let j = 0; j < size; j++) {
+      let row = document.createElement("div");
+      row.classList.add("row");
+      column.appendChild(row);
+    }
   }
+  addMouseEnterListeners();
 }
 
-//create hover effect for the squares
+function addMouseEnterListeners() {
+  const rows = document.querySelectorAll(".row");
+  rows.forEach((row) => {
+    row.addEventListener("mouseenter", () => {
+      row.style.backgroundColor = "white";
+    });
+  });
+}
 
-//add button at the top that will prompt user
+function setRainbowMode() {
+  const rows = document.querySelectorAll(".row");
+  rows.forEach((row) => {
+    row.addEventListener("mouseenter", () => {
+      const randomRGB = () => Math.floor(Math.random() * 256);
+      row.style.backgroundColor = `rgb(${randomRGB()}, ${randomRGB()}, ${randomRGB()})`;
+    });
+  });
+}
 
-//asking for grid size. user input max 100
+grid.addEventListener("click", () => {
+  let newGridSize = prompt("Choose Grid Size 1-100");
+  newGridSize = parseInt(newGridSize, 10);
+  if (isNaN(newGridSize) || newGridSize < 1 || newGridSize > 100) {
+    alert("Out of range");
+  } else {
+    gridSize = newGridSize;
+    createGrid(gridSize);
+  }
+});
 
-//existing grid removed and new grid generated
+restart.addEventListener("click", () => {
+  const rows = document.querySelectorAll(".row");
+  rows.forEach((row) => {
+    row.style.backgroundColor = "black";
+  });
+});
 
-//extra feature: random color on squares
+defaultColor.addEventListener("click", addMouseEnterListeners);
 
-//extra extra: each interaction darkens square 10%. maybe use opacity css property for this.
+rainbow.addEventListener("click", setRainbowMode);
+
+document.addEventListener("DOMContentLoaded", () => {
+  createGrid(gridSize);
+});

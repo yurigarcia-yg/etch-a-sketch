@@ -3,15 +3,46 @@
   margin: 0px;
 }
 
+.bigger-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: blue;
+  flex-direction: column;
+  gap: 16px;
+  width: 100vw;
+}
+
+.header {
+  width: 804px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  width: 100px;
+  font-weight: bold;
+  border: solid red 2px;
+  color: white;
+  background-color: black;
+}
+
 .container {
   display: flex;
-  height: 1000px;
-  width: 1000px;
+  height: 500px;
+  width: 800px;
+  border: solid red 2px;
+}
+
+.column {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 
 .row {
-  height: 50px;
-  width: 50px;
   background-color: black;
-  border: solid red 2px;
+  flex: 1;
+  flex-direction: row;
 }
